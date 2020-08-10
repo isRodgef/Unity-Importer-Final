@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-struct DirectorySettings
+public struct DirectorySettings
 {
      public bool retroactiveChanges;
      public string[] paths;
@@ -14,8 +14,12 @@ struct DirectorySettings
 [CreateAssetMenu(fileName = "ImportToolConfig", menuName = "ScriptableObjects/ImporterToolConfig", order = 1)]
 public class ImportToolConfig : AbstractSingleton<ImportToolConfig>
 {
-    private DirectorySettings workingPaths;
+    ///public DirectorySettings workingPaths;
 
-    public bool enable;
+    // Cannot seem to store  a struct in a scriptable object 
+    public bool retroactiveChanges;
+    public string[] paths;
+    
+   
 }
 
