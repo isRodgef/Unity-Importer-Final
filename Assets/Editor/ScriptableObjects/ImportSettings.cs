@@ -41,7 +41,7 @@ public class ImportSettings : ScriptableObject
                 Debug.Log(AssetDatabase.GUIDToAssetPath(text1));
                 if (Directory.GetParent(texture).FullName == fullyQualifiedPath)
                 {
-                    //AssetDatabase.ImportAsset(text1);
+                    AssetDatabase.ImportAsset(text1);
                 }
             }
             
@@ -51,7 +51,7 @@ public class ImportSettings : ScriptableObject
                 Debug.Log(AssetDatabase.GUIDToAssetPath(audio1));
                 if (Directory.GetParent(audio).FullName == fullyQualifiedPath)
                 {
-                   // AssetDatabase.ImportAsset(audio);
+                    AssetDatabase.ImportAsset(audio);
                 }
             }
             
