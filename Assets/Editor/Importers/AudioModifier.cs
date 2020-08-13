@@ -1,33 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
-public class AudioModifier : AssetImporter
+using System.IO;
+public class AudioModifier : AssetPostprocessor
 {
+    private ImportSettings newSettings;
+    
     private void OnPreprocessAudio()
     {
-        Debug.Log("Rodger does audio\n\n\n");
+        newSettings =
+            (ImportSettings) AssetDatabase.LoadMainAssetAtPath(
+                DirectoryTranverser.getFirstRelevantParent(Directory.GetParent(assetPath)));
     }
 
     private void OnPostprocessAudio(AudioClip arg)
     {
-      /*  var importer = assetImporter as AudioImporter;
+        var importer = assetImporter as AudioImporter;
 
         if (importer == null)
             return;
-
-
+        
+        // Set values to asset in current directory or first parent directory with asset included
         AudioImporterSampleSettings sampleSettings = importer.defaultSampleSettings;
-
-
-        sampleSettings.loadType = AudioClipLoadType.Streaming;
-        sampleSettings.compressionFormat = AudioCompressionFormat.AAC;
-
+        sampleSettings.loadType = newSettings.audioLoadType;
+        sampleSettings.compressionFormat = newSettings.audioCompressFormat;
+        sampleSettings.sampleRateSetting = newSettings.audioSampleRate;
         importer.defaultSampleSettings = sampleSettings;
+        
+        if (newSettings.overrideAudioAndroid)
+        {
+            importer.SetOverrideSampleSettings("Android", sampleSettings);
+        }
 
-
-
-        Debug.Log(arg);*/
     }
+    
 }

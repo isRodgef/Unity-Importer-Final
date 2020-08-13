@@ -4,14 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public struct DirectorySettings
-{
-     public bool retroactiveChanges;
-     public string[] paths;
-}
-    
 
-[CreateAssetMenu(fileName = "ImportToolConfig", menuName = "ScriptableObjects/ImporterToolConfig", order = 1)]
+[CreateAssetMenu(fileName = "ImportToolConfig", menuName = "ScriptableObjects/ToolConfig", order = 1)]
 public class ImportToolConfig : AbstractSingleton<ImportToolConfig>
 {
     ///public DirectorySettings workingPaths;
